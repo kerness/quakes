@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    restart: 'on-failure'
+    depends_on:
+      - db
+    networks:
+      - quakes-api
+
+  db:
+    image: kartoza/postgis:14
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASS=${POSTGRES_PASS}
+      - POSTGRES_DBNAME=${POSTGRES_DBNAME}
+    restart: 'on-failure'
+    networks:
+      - quakes-api
+
+networks:
+  quakes-api:
+    driver: bridge
+    
+volumes:
+  postgres_data:
+
