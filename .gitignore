@@ -1,6 +1,7 @@
 #
 *.geojson
 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -37,6 +38,9 @@ db.sqlite3-journal
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Code Editor
+.vscode/
 
 # Environments
 .env
