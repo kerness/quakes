@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'rest_framework',
     'rest_framework_gis',
+    'leaflet',
+    'quakes',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Leaflet
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (52, 22),
+    'DEFAULT_ZOOM': 5,
+}

@@ -2,6 +2,7 @@
 *.geojson
 */migrations
 .vscode/
+*geojson
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
