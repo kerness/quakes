@@ -64,6 +64,6 @@ class USGSFetcher:
             Writes data to geojson file.
         """
         df = self.fetchData()
-        df.to_file("file.geojson", driver="GeoJSON")
+        df.to_file("usgs.geojson", driver="GeoJSON")
 
 
