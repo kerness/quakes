@@ -32,6 +32,32 @@ services:
     networks:
       - quakes-api
 
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: quakes_front
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    depends_on:
+      - api
+    networks:
+      - quakes-api
+
+  nginx:
+    restart: always
+    depends_on:
+      - api
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    networks:
+      - quakes-api
+
+
 networks:
   quakes-api:
     driver: bridge
