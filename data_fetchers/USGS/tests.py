@@ -3,7 +3,7 @@ from USGSFetcher import USGSFetcher
 import pandas as pd
 import geopandas as gpd
 
-f = USGSFetcher("all", "month")
+f = USGSFetcher("1.0", "week")
 
 print(str(f))
 

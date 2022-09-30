@@ -8,6 +8,11 @@ Results are exported to GeoJSON file.
 import requests
 import pandas as pd
 import geopandas as gpd
+from pathlib import Path
+import datetime
+
+from quakes_api.settings import DATA_DIR
+
 
 
 # LEVELS and PERIODS are based on the USGS API specification
@@ -15,6 +20,8 @@ LEVELS = {'1.0', '2.5', '4.5', 'significant', 'all'}
 PERIODS = {'hour', 'day', 'week', 'month'}
 # URL for creating the requests - {} will be filled with the values from LEVELS nad PERIODS sets
 URL = "	 https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/{}_{}.geojson"
+
+EXPORT_PATH = Path(DATA_DIR, "USGS")
 
 class USGSFetcher:
     """
@@ -28,6 +35,7 @@ class USGSFetcher:
             raise ValueError("Bad level value. Choose one from: " + str(PERIODS))
 
         self.request_url = URL.format(level, period)
+        self.name = f"{level}{period}"
 
         try:
             r = requests.get(self.request_url)
@@ -64,6 +72,10 @@ class USGSFetcher:
             Writes data to geojson file.
         """
         df = self.fetchData()
-        df.to_file("usgs.geojson", driver="GeoJSON")
+        identifier = str(datetime.datetime.now()).replace(" ", "-")
+        path = Path(EXPORT_PATH / f"USGS_{identifier}_{self.name}.geojson")
+        df.to_file(path, driver="GeoJSON")
+
+        return path
 
 
