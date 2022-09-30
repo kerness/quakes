@@ -16,7 +16,7 @@ from django.utils.timezone import make_aware
 def load_USGS():
     from data_fetchers.USGS.USGSFetcher import USGSFetcher
 
-    f = USGSFetcher("all", "month")
+    f = USGSFetcher("significant", "month")
     file = f.exportData()
 
     geojs = json.loads(file.read_text())
@@ -24,13 +24,14 @@ def load_USGS():
 
         q = Quake(
             mag=feature["properties"]["mag"],
-            # date=make_aware(datetime.fromtimestamp(feature["properties"]["time"])),
+            date=make_aware(datetime.fromtimestamp(feature["properties"]["time"]/1000)),
             # może wcześniej zamienic na to takie datetime
-            date="2022-01-17 18:50:52",
+            #date="2022-01-17 18:50:52",
             geom=Point(
                 feature["geometry"]["coordinates"][0],
                 feature["geometry"]["coordinates"][1],
             ),
+            vendor='USGS',
         )
         q.save()
 

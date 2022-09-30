@@ -32,6 +32,7 @@ def load_GRSS():
                 feature["geometry"]["coordinates"][0],
                 feature["geometry"]["coordinates"][1],
             ),
+            vendor='GRSS',
         )
         q.save()
 
