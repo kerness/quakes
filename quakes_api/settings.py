@@ -130,3 +130,9 @@ LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (52, 22),
     'DEFAULT_ZOOM': 5,
 }
+
+# Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
