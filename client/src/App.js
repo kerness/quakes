@@ -10,7 +10,7 @@ const fetcher = (url) =>axios.get(url).then((res) => res.data)
 const App = () => {
   const [activeQuake, setActiveQuake] = useState(null);
 
-  const { data, error } = useSWR("/api/v1/quakes", fetcher);
+  const { data, error } = useSWR("http://localhost:8000/quakes", fetcher);
   const quakes = data && !error ? data : {};
   if (error) {
     return <Alert variant="danger">There is a problem</Alert>;
