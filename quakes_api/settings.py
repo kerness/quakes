@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework_gis',
     'leaflet',
     'quakes',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -123,16 +124,41 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+ 
 # Leaflet
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (52, 22),
     'DEFAULT_ZOOM': 5,
 }
-
+ 
 # Rest Framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 100,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': f"{BASE_DIR}/debug.log",
+        },
+    },   
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
