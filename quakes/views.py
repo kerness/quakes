@@ -5,10 +5,11 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
 import logging
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+
 
 
 # TODO: zwracanie z konkretnego przedziału dat
-# Może zrobić tak, żeby USGS, GRSS miały całkowicie inne endpointy - quakes/usgs, quakes/grss
 
 class QuakeDetail(generics.RetrieveUpdateDestroyAPIView):
     """ Return a single Quake by PK """
@@ -18,8 +19,9 @@ class QuakeDetail(generics.RetrieveUpdateDestroyAPIView):
 class QuakeList(generics.ListAPIView):
     """View to list all quakes or quakes by specified vendor"""
     serializer_class = QuakeSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['vendor']
+    ordering_fields = ['mag']
     logger = logging.getLogger(__name__)
     
 

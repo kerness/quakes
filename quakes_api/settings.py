@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Leaflet
 
 LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (52, 22),
+    'DEFAULT_CENTER': (0, 0),
     'DEFAULT_ZOOM': 5,
 }
  
@@ -138,6 +138,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
     ),
 }
 
