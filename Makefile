@@ -22,3 +22,9 @@ down-v:
 	docker-compose down -v
 shell:
 	docker-compose exec api python manage.py shell
+flush:
+	docker-compose exec api python manage.py flush
+lUSGS:
+	docker-compose exec api python manage.py loadUSGS
+lGRSS:
+	docker-compose exec api python manage.py loadGRSS

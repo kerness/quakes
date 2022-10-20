@@ -16,7 +16,7 @@ from django.utils.timezone import make_aware
 def load_USGS():
     from data_fetchers.USGS.USGSFetcher import USGSFetcher
 
-    f = USGSFetcher("significant", "month")
+    f = USGSFetcher("all", "month")
     file = f.exportData()
 
     geojs = json.loads(file.read_text())

@@ -10,7 +10,8 @@ const fetcher = (url) =>axios.get(url).then((res) => res.data)
 const App = () => {
   const [activeQuake, setActiveQuake] = useState(null);
 
-  const { data, error } = useSWR("http://localhost:8000/quakes", fetcher);
+  const { data, error } = useSWR("http://localhost:8000/quakes/?vendor=GRSS&limit=3500", fetcher);
+  console.log("HE",  data)
   const quakes = data && !error ? data : {};
   if (error) {
     return <Alert variant="danger">There is a problem</Alert>;
@@ -19,7 +20,8 @@ const App = () => {
     return <Alert variant="danger">No data</Alert>;
  }
   return (
-    <MapContainer center={[1, 1]} zoom={9}>
+   // nie wyświetlają sie wszytskie bo tylko jest 100
+    <MapContainer center={[32, 18]} zoom={3}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

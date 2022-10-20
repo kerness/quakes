@@ -25,7 +25,9 @@ EXPORT_PATH = Path(DATA_DIR, "USGS")
 
 class USGSFetcher:
     """
-        Some documentation
+        Get data from USGS API
+        LEVELS = {'1.0', '2.5', '4.5', 'significant', 'all'}
+        PERIODS = {'hour', 'day', 'week', 'month'}
     """
 
     def __init__(self, level, period):
