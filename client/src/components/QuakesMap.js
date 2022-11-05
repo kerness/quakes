@@ -1,5 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import LocationMarker from "./LocationMarker";
+
 
 const QuakesMap = ({ center, zoom, quakesData }) => {
     const markers = quakesData.map(quake => {
@@ -32,7 +32,6 @@ const QuakesMap = ({ center, zoom, quakesData }) => {
         <MapContainer className="map"
             center={center}
             zoom={zoom}
-            style={{ height: "100vh" }}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
