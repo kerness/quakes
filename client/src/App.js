@@ -44,11 +44,9 @@ function App() {
 
    const position = [50.505, 19.09]
    return (
-      // <QuakesMap center={position} zoom={6} />
+
       <div className='app-container'>
-        <Menu onVendorChange={changeVendor}/>
-        {/* <QuakesMap center={position} zoom={8} quakesData={quakesData}/>
-       */}
+        <Menu onVendorChange={changeVendor} vendor={activeVendor}/>
       { !loading ? <QuakesMap center={center} zoom={zoom} quakesData={quakesData}/> : <Spinner />}
       
 
