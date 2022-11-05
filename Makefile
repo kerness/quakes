@@ -6,6 +6,8 @@ endif
 
 build:
 	docker-compose up --build -d --remove-orphans
+rebuild:
+	docker-compose down && docker-compose up --build -d --remove-orphans
 up:
 	docker-compose up -d
 down:
