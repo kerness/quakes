@@ -13,6 +13,7 @@ function App() {
    const [activeVendor, setActiveVendor] = useState('GRSS');
    const [zoom, setZoom] = useState(8)
    const [center, setCenter] = useState([50.505, 19.09])
+   const [query, setQuery] = useState('')
 
 
    useEffect(() => {
@@ -30,7 +31,7 @@ function App() {
    const changeVendor = () => {
       if (activeVendor === 'GRSS') {
          setActiveVendor('USGS')
-         setZoom(2)
+         setZoom(3)
          setCenter([19.00, 19.00])
       } 
       else if (activeVendor === 'USGS') {
@@ -41,12 +42,13 @@ function App() {
       console.log(activeVendor);
    }
 
+   // getQuer
 
-   const position = [50.505, 19.09]
+
    return (
 
       <div className='app-container'>
-        <Menu onVendorChange={changeVendor} vendor={activeVendor}/>
+        <Menu onVendorChange={changeVendor} vendor={activeVendor}, getQuery/>
       { !loading ? <QuakesMap center={center} zoom={zoom} quakesData={quakesData}/> : <Spinner />}
       
 
