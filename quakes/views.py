@@ -6,7 +6,7 @@ from django.contrib.gis.measure import D
 import logging
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
-
+from quakes.custom_filters import QuakesFilter
 
 
 # TODO: zwracanie z konkretnego przedziału dat
@@ -20,7 +20,8 @@ class QuakeList(generics.ListAPIView):
     """View to list all quakes or quakes by specified vendor"""
     serializer_class = QuakeSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['vendor']
+    filterset_class = QuakesFilter
+    filterset_fields = ['vendor', 'mag']
     ordering_fields = ['mag']
     logger = logging.getLogger(__name__)
     
@@ -32,6 +33,11 @@ class QuakeList(generics.ListAPIView):
         lat = self.request.query_params.get('lat')
         lng = self.request.query_params.get('lng')
         radius = self.request.query_params.get('radius')
+
+        # Add magnitude range giltering
+        minmag = self.request.query_params.get('minmag')
+        maxmag = self.request.query_params.get('maxmag')
+
 
         self.logger.debug(f'Given parameters: lat: {lat}, lng: {lng}, radius: {radius}')
 
