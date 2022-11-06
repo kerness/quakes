@@ -25,7 +25,8 @@ function App() {
          setLoading(false)
       }
       fetchData()
-   }, [activeVendor])
+      console.log(query)
+   }, [activeVendor, query])
 
    // change Vendor
    const changeVendor = () => {
@@ -48,7 +49,7 @@ function App() {
    return (
 
       <div className='app-container'>
-        <Menu onVendorChange={changeVendor} vendor={activeVendor}, getQuery/>
+        <Menu onVendorChange={changeVendor} vendor={activeVendor} getQuery={(q) => setQuery(q)}/>
       { !loading ? <QuakesMap center={center} zoom={zoom} quakesData={quakesData}/> : <Spinner />}
       
 

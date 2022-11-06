@@ -34,12 +34,37 @@
   justify-content: space-between;
   align-items: center;
   margin: 5px;
+  margin-bottom: 80px;
 }
 
 .header h1 {
   color: black;
 }
 
-.btn {
-  color: 
+.search-form {
+  padding: 10px;
+}
+
+.search-form input {
+  width: 100%;
+  padding: 5px;
+}
+
+
+.search-form label {
+  font-size: 2vh;
+  color: black;
+  padding: 5px;
+}
+
+.search-form #submit {
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  background-color: #e6ff0a;
+  border: none;
+}
+
+p[role=alert] {
+  color: red;
 }
