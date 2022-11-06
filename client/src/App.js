@@ -13,13 +13,21 @@ function App() {
    const [activeVendor, setActiveVendor] = useState('GRSS');
    const [zoom, setZoom] = useState(8)
    const [center, setCenter] = useState([50.505, 19.09])
-   const [query, setQuery] = useState('')
+   const [query, setQuery] = useState({
+      minmag: 0,
+      maxmag: 10,
+      startdate: '',
+      enddate: ''
+   })
 
 
    useEffect(() => {
       const fetchData = async () => {
          setLoading(true)
-         const result = await axios(`http://localhost:8000/quakes/?format=json&limit=60&offset=3000&vendor=${activeVendor}`)
+         const url = `http://localhost:8000/quakes/?format=json&mag_min=${query.minmag}&mag_max=${query.maxmag}&vendor=${activeVendor}&ordering=-mag`
+         console.log(url);
+         const result = await axios(url)
+         //const result = await axios(`http://localhost:8000/quakes/?format=json&limit=60&offset=3000&vendor=${activeVendor}`)
          //console.log(result.data.results.features);
          setQuakesData(result.data.results.features)
          setLoading(false)
