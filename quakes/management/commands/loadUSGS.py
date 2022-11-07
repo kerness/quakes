@@ -12,7 +12,7 @@ from django.contrib.gis.geos import Point
 from datetime import datetime
 from django.utils.timezone import make_aware
 
-# TODO: naprawić daty
+# TODO: naprawić daty tak żeby tylko data była bez godziny
 def load_USGS():
     from data_fetchers.USGS.USGSFetcher import USGSFetcher
 
@@ -24,7 +24,7 @@ def load_USGS():
 
         q = Quake(
             mag=feature["properties"]["mag"],
-            date=make_aware(datetime.fromtimestamp(feature["properties"]["time"]/1000)),
+            date=make_aware(datetime.fromtimestamp(feature["properties"]["time"]/1000)).date(), # EDITED: get only date!
             # może wcześniej zamienic na to takie datetime
             #date="2022-01-17 18:50:52",
             geom=Point(

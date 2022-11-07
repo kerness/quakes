@@ -11,7 +11,7 @@ from django.contrib.gis.db import models
 
 class Quake(models.Model):
     mag = models.FloatField(("Magnitude"))
-    date = models.DateTimeField(("Time and date"))
+    date = models.DateField(("Date"))
     geom = models.PointField(srid=4326)
     # vendor = models.ForeignKey(DataVendor, on_delete=models.CASCADE, default=1)
     vendor = models.CharField(

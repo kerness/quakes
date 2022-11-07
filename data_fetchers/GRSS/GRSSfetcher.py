@@ -12,7 +12,7 @@ except ModuleNotFoundError:
     DATA_DIR = "../../data"
 
 
-def create_timestamp(date, time):
+def create_timestamp(date, time=''):
     """
     Converts date and time string to UNIX timestamp
     The date is like: "2010/01/07"
@@ -27,9 +27,11 @@ def create_timestamp(date, time):
     # timestamp = timegm(dt.timetuple())
 
     date = str(date).replace("/", "-")
-    time = str(time).split(".")[0]
+    # EDITED: remove time from date!
+    #time = str(time).split(".")[0]
 
-    return date + " " + time
+    # return date + " " + time
+    return date
 
 
 EXPORT_PATH = Path(DATA_DIR, "GRSS")
