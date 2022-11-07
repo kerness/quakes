@@ -24,7 +24,7 @@ function App() {
    useEffect(() => {
       const fetchData = async () => {
          setLoading(true)
-         const url = `http://localhost:8000/quakes/?format=json&mag_min=${query.minmag}&mag_max=${query.maxmag}&vendor=${activeVendor}&ordering=-mag`
+         const url = `http://localhost:8000/quakes/?format=json&date_after=${query.startdate}&date_before=${query.enddate}&mag_min=${query.minmag}&mag_max=${query.maxmag}&vendor=${activeVendor}&ordering=-${query.mag}`
          console.log(url);
          const result = await axios(url)
          //const result = await axios(`http://localhost:8000/quakes/?format=json&limit=60&offset=3000&vendor=${activeVendor}`)
