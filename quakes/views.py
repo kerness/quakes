@@ -25,6 +25,7 @@ class QuakeList(generics.ListAPIView):
     ordering_fields = ['mag']
     logger = logging.getLogger(__name__)
     
+    
 
     def get_queryset(self):
         """Pass vendor to get quakes provided by this vendor"""
@@ -39,14 +40,17 @@ class QuakeList(generics.ListAPIView):
         maxmag = self.request.query_params.get('maxmag')
 
 
-        self.logger.debug(f'Given parameters: lat: {lat}, lng: {lng}, radius: {radius}')
+        
 
 
         if lat and lng and radius is not None:
+            self.logger.debug(f'21Given parameters: lat: {lat}, lng: {lng}, radius: {radius}')
             # check if the values are numbers. if not do nothing :D
-            if not isinstance(lat,str) and not isinstance(lng, str) and not isinstance(radius, str):
-                point = Point(float(lat), float(lng), srid=4326)
-                queryset = Quake.objects.filter(geom__distance_lte=(point, D(km=float(radius))))
+            #if not isinstance(lat,str) and not isinstance(lng, str) and not isinstance(radius, str):
+            # nie wiem w sumie ten if chyba nie jest potrzebny
+            self.logger.debug(f'Given parameters: lat: {lat}, lng: {lng}, radius: {radius}')
+            point = Point(float(lat), float(lng), srid=4326)
+            queryset = Quake.objects.filter(geom__distance_lte=(point, D(km=float(radius))))
 
         return queryset
 

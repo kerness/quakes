@@ -4,14 +4,14 @@ import Search from "./Search"
 import CircleSearch from "./CircleSearch";
 import SubHeader from "./SubHeader";
 
-const Menu = ({ onVendorChange, vendor, getQuery }) => {
+const Menu = ({ onVendorChange, vendor, getQuery, getCircleQuery }) => {
   return (
     <div className='menu'>
       <Header title="Mapa trzęsień ziemi" />
       <Button color="#e6ff0a" text={vendor} onClick={onVendorChange} />
       <Search getQuery={getQuery}/>
-      <SubHeader title="Wyszukaj trzęsienie w kole!"/>
-      <CircleSearch getQuery={getQuery}/>
+      {/* <SubHeader title="Wyszukaj trzęsienie w kole!"/> */}
+      {/* <CircleSearch getCircleQuery={getCircleQuery}/> */}
     </div>
   )
 }

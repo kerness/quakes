@@ -68,3 +68,8 @@
 p[role=alert] {
   color: red;
 }
+
+.btn{
+  width: 100%;
+  
+}

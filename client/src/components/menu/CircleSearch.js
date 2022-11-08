@@ -1,13 +1,13 @@
 
 import { useState } from 'react'
 import { useForm } from "react-hook-form";
-const CircleSearch = ({ getQuery }) => {
-    const [queryData, setQueryData] = useState('')
+const CircleSearch = ({ getCircleQuery }) => {
+    const [circleQueryData, setCircleQueryData] = useState('')
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        alert(JSON.stringify(data))
-        //setQueryData(data)
-        //getQuery(data)
+        //alert(JSON.stringify(data))
+        setCircleQueryData(data)
+        getCircleQuery(data)
     };
 
 
