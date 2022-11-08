@@ -43,8 +43,10 @@ class QuakeList(generics.ListAPIView):
 
 
         if lat and lng and radius is not None:
-            point = Point(float(lat), float(lng), srid=4326)
-            queryset = Quake.objects.filter(geom__distance_lte=(point, D(km=float(radius))))
+            # check if the values are numbers. if not do nothing :D
+            if not isinstance(lat,str) and not isinstance(lng, str) and not isinstance(radius, str):
+                point = Point(float(lat), float(lng), srid=4326)
+                queryset = Quake.objects.filter(geom__distance_lte=(point, D(km=float(radius))))
 
         return queryset
 
