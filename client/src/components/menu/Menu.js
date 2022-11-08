@@ -8,7 +8,7 @@ const Menu = ({ onVendorChange, vendor, getQuery, getCircleQuery }) => {
   return (
     <div className='menu'>
       <Header title="Mapa trzęsień ziemi" />
-      <Button color="#e6ff0a" text={vendor} onClick={onVendorChange} />
+      <Button color="#a1acbd" text={vendor} onClick={onVendorChange} />
       <Search getQuery={getQuery}/>
       {/* <SubHeader title="Wyszukaj trzęsienie w kole!"/> */}
       {/* <CircleSearch getCircleQuery={getCircleQuery}/> */}

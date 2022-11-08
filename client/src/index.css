@@ -25,7 +25,7 @@
 }
 
 .menu {
-  background-color: rgb(14, 56, 10);
+  background-color: #3d4756;
   width: 25%;
 }
 
@@ -61,7 +61,7 @@
   margin-top: 30px;
   width: 100%;
   text-align: center;
-  background-color: #e6ff0a;
+  background-color: #a1acbd;
   border: none;
 }
 
@@ -71,5 +71,7 @@ p[role=alert] {
 
 .btn{
   width: 100%;
+  background-color: #a1acbd;
+  border-radius: 0;
   
 }

@@ -5,6 +5,7 @@
 *geojson
 node_modules/
 data/
+todo.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

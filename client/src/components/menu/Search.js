@@ -46,11 +46,13 @@ const Search = ( { getQuery }) => {
             />
             { errors.maxmag?.type === "required" && <p role="alert">Podaj maksymalną wartość magnitudy.</p> }
 
-            <label htmlFor="lat">Szerokość geograficzna:</label>
+            <label htmlFor="lng">Szerokość geograficzna:</label>
+            <input type="number" id="lng" name="lng" { ...register('lng', { required: false }) }/>
+
+
+            <label htmlFor="lat">Długość geograficzna:</label>
             <input type="number" id="lat" name="lat" {...register('lat', { required: false })} />
 
-            <label htmlFor="lng">Długość geograficzna:</label>
-            <input type="number" id="lng" name="lng" { ...register('lng', { required: false }) }/>
 
             <label htmlFor="radius">Promień:</label>
             <input type="number" id="radius" name="radius" { ...register('radius', { required: false }) }/>
