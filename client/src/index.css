@@ -35,10 +35,17 @@
   align-items: center;
   margin: 5px;
   margin-bottom: 80px;
+  background-color:#a1acbd;
+  text-align: center;
 }
 
 .header h1 {
-  color: black;
+  color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+  font-variant-caps: all-small-caps;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
 
 .search-form {
@@ -48,13 +55,16 @@
 .search-form input {
   width: 100%;
   padding: 5px;
+  cursor: pointer;
 }
 
 
 .search-form label {
   font-size: 2vh;
-  color: black;
+  color: whitesmoke;
   padding: 5px;
+  font-variant-caps: small-caps;
+  font-family: 'Roboto', sans-serif;
 }
 
 .search-form #submit {
@@ -63,6 +73,11 @@
   text-align: center;
   background-color: #a1acbd;
   border: none;
+  color: whitesmoke;
+  font-variant-caps: all-small-caps;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
 }
 
 p[role=alert] {
@@ -73,5 +88,11 @@ p[role=alert] {
   width: 100%;
   background-color: #a1acbd;
   border-radius: 0;
+  color: whitesmoke;
+  font-variant-caps: all-small-caps;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
   
 }
+
