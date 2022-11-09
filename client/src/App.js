@@ -47,7 +47,7 @@ function App() {
          const result = await axios(url)
          //const result = await axios(`http://localhost:8000/quakes/?format=json&limit=60&offset=3000&vendor=${activeVendor}`)
          //console.log(result.data.results.features);
-         setQuakesData(result.data.results.features)
+         setQuakesData(result.data.features)
          setLoading(false)
       }
       fetchData()

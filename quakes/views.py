@@ -19,10 +19,12 @@ class QuakeDetail(generics.RetrieveUpdateDestroyAPIView):
 class QuakeList(generics.ListAPIView):
     """View to list all quakes or quakes by specified vendor"""
     serializer_class = QuakeSerializer
+    pagination_class = None
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = QuakesFilter
     filterset_fields = ['vendor', 'mag']
     ordering_fields = ['mag']
+    
     logger = logging.getLogger(__name__)
     
     
