@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     'rest_framework_gis',
     'leaflet',
     'quakes',
-    'django_filters'
+    'django_filters',
+    'data_fetchers',
+    
 ]
 
 MIDDLEWARE = [
