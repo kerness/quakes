@@ -70,42 +70,72 @@ def split_date_range(start, end, intv):
 
 
 def over_limit_ranges_count():
-    ranges = [('2010-04-01', '2010-04-30'), ('2018-06-01', '2018-06-30'), ('2018-07-01', '2018-07-31'), ('2019-07-01', '2019-07-31'), ('2020-06-01', '2020-06-30')]
+    """Funkcja do obsługi miesięcy w którch liczba obserwacji przekracza 20000"""
+    over_limit_ranges = [('2010-04-01', '2010-04-30'), ('2018-06-01', '2018-06-30'), ('2018-07-01', '2018-07-31'), ('2019-07-01', '2019-07-31'), ('2020-06-01', '2020-06-30')]
+    # dzieli podane miesiące na trzy okresy i zamienia je na obiekty datetime
+    month_4 = [list(map(lambda x : datetime.strptime(x,"%Y-%m-%d"), list(split_date_range(r[0], r[1], 3)))) for r in over_limit_ranges]
+    month_4_add1 = []
+    # dodaje dwie daty do każdego miesiąca tak aby możliwe było wykonanie zapytania bez nachodzących na siebie dat
+    for date_range in month_4:
+        date_range.insert(2, (date_range[1] + timedelta(days=1)))
+        date_range.insert(4, (date_range[3] + timedelta(days=1)))
+    # zamienia datetime na string - ta lista jest gotowa do wykonania zapytań
+    month_4_add1 = [[d.strftime("%Y-%m-%d") for d in group] for group in month_4]
 
-    for r in ranges:
+    
+    
+    # pętla do wykonania zapytań w trzech okresach któ©e na siebie nie nachodzą
+    for mdr in month_4_add1:
+        print(mdr)
+        fetcher = uf.USGSFetcher('fdsnws', starttime=mdr[0], endtime=mdr[1], count=True)
+        res = fetcher.exportData()
+        print("Zakres dat: ", dt, "Count:", res)
+        fetcher = uf.USGSFetcher('fdsnws', starttime=mdr[2], endtime=mdr[3], count=True)
+        res = fetcher.exportData()
+        print("Zakres dat: ", dt, "Count:", res)
+        fetcher = uf.USGSFetcher('fdsnws', starttime=mdr[4], endtime=mdr[5], count=True)
+        res = fetcher.exportData()
+        print("Zakres dat: ", dt, "Count:", res)
 
-        date_ranges_in_month = []
-        half_of_range = list(split_date_range(r[0], r[1], 2))[1]
-        half_of_range_plus_1_day = datetime.strptime(half_of_range,"%Y-%m-%d")
-        half_of_range_plus_1_day += timedelta(days=1)
-        half_of_range_plus_1_day = half_of_range_plus_1_day.strftime("%Y-%m-%d")
 
-        first_range = (r[0], half_of_range)
-        second_range = (half_of_range_plus_1_day, r[1])
-        date_ranges_in_month.append(first_range)
-        date_ranges_in_month.append(second_range)
+    # zamienić na string od nowa
 
-        for dt in date_ranges_in_month:
-            fetcher = uf.USGSFetcher('fdsnws', starttime=dt[0], endtime=dt[1], count=True)
-            res = fetcher.exportData()
-            print("Zakres dat: ", dt, "Count:", res)
-            if res > 20000:
-                date_range_splitted = []
-                print('meh')
-                print(dt[0], dt[1])
-                print(list(split_date_range(dt[0], dt[1], 2)))
-                half_of_range = list(split_date_range(dt[0], dt[1], 2))[1]
-                half_of_range_plus_1_day = datetime.strptime(half_of_range,"%Y-%m-%d")
-                half_of_range_plus_1_day += timedelta(days=1)
-                half_of_range_plus_1_day = half_of_range_plus_1_day.strftime("%Y-%m-%d")
-                fr = (r[0], half_of_range)
-                sr = (half_of_range_plus_1_day, r[1])
-                date_range_splitted.append(fr)
-                date_range_splitted.append(sr)
-                for dts in date_range_splitted:
-                    fetcher = uf.USGSFetcher('fdsnws', starttime=dts[0], endtime=dts[1], count=True)
-                    res = fetcher.exportData()
-                    print("Zakres dat: ", dts, "Count:", res)
+    # for date in month_4:
+    #     mon
+
+    # month4_old = [m.strftime("%Y-%m-%d") for m in month_4]
+    # month4_add1 = [m.strftime("%Y-%m-%d") for m in month4_add1]
+
+    # print(month4_old)
+    # print(month4_add1)
+    
+
+    # for r in over_limit_ranges:
+
+    #     month_4.append(list(split_date_range(r[0], r[1], 4)))
+
+        
+
+        # half_of_range = list(split_date_range(r[0], r[1], 2))[1]
+        # half_of_range_plus_1_day = datetime.strptime(half_of_range,"%Y-%m-%d")
+        # half_of_range_plus_1_day += timedelta(days=1)
+        # half_of_range_plus_1_day = half_of_range_plus_1_day.strftime("%Y-%m-%d")
+
+        # first_range = (r[0], half_of_range)
+        # second_range = (half_of_range_plus_1_day, r[1])
+        # date_ranges_in_month.append(first_range)
+        # date_ranges_in_month.append(second_range)
+
+        # for dt in date_ranges_in_month:
+        #     fetcher = uf.USGSFetcher('fdsnws', starttime=dt[0], endtime=dt[1], count=True)
+        #     res = fetcher.exportData()
+        #     print("Zakres dat: ", dt, "Count:", res)
+        #     if res > 20000:
+        #         print('meh')
+
+
+    
+
 
 
 
