@@ -11,33 +11,55 @@ import geopandas as gpd
 from pathlib import Path
 import datetime
 
-from quakes_api.settings import DATA_DIR
+# for testing in developoment
+try:
+    from quakes_api.settings import DATA_DIR
+except ModuleNotFoundError:
+    DATA_DIR = "../../data"
 
 
 
 # LEVELS and PERIODS are based on the USGS API specification
+MODES = {'feed', 'fdsnws'}
 LEVELS = {'1.0', '2.5', '4.5', 'significant', 'all'}
 PERIODS = {'hour', 'day', 'week', 'month'}
 # URL for creating the requests - {} will be filled with the values from LEVELS nad PERIODS sets
-URL = "	 https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/{}_{}.geojson"
+
+URL_FDSNWS = "https://earthquake.usgs.gov/fdsnws/event/1/{}?format=geojson&starttime={}&endtime={}"
+URL_FEED_COUNT = "https://earthquake.usgs.gov/fdsnws/event/1/count?starttime=2019-04-01&endtime=2019-05-01"
+URL_FEED = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/{}_{}.geojson"
+
 
 EXPORT_PATH = Path(DATA_DIR, "USGS")
 
 class USGSFetcher:
     """
         Get data from USGS API
+        YY / MM / DD
+        MODES = {'feed', 'fdsnws'}
         LEVELS = {'1.0', '2.5', '4.5', 'significant', 'all'}
         PERIODS = {'hour', 'day', 'week', 'month'}
     """
 
-    def __init__(self, level, period):
+    def __init__(self, mode='feed', level='all', period='day', starttime='2022-11-11', endtime='2022-11-12', count=False):
         if level not in LEVELS:
             raise ValueError("Bad level value. Choose one from: " + str(LEVELS))
         if period not in PERIODS:
-            raise ValueError("Bad level value. Choose one from: " + str(PERIODS))
+            raise ValueError("Bad period value. Choose one from: " + str(PERIODS))
+        if mode not in MODES:
+            raise ValueError("Bad mode value. Choose one from: " + str(MODES))
+        self.count = count
 
-        self.request_url = URL.format(level, period)
-        self.name = f"{level}{period}"
+        if mode == 'feed':
+            self.request_url = URL_FEED.format(level, period)
+            self.name = f"{level}{period}"
+        else:
+            if count:
+                self.request_url = URL_FDSNWS.format('count', starttime, endtime)
+            else:
+                self.request_url = URL_FDSNWS.format('query', starttime, endtime)
+            self.name = f"{mode.upper()}{starttime}{endtime}"
+
 
         try:
             r = requests.get(self.request_url)
@@ -73,11 +95,14 @@ class USGSFetcher:
         """
             Writes data to geojson file.
         """
-        df = self.fetchData()
-        identifier = str(datetime.datetime.now()).replace(" ", "-")
-        path = Path(EXPORT_PATH / f"USGS_{identifier}_{self.name}.geojson")
-        df.to_file(path, driver="GeoJSON")
+        if not self.count:
+            df = self.fetchData()
+            identifier = str(datetime.datetime.now()).replace(" ", "-")
+            path = Path(EXPORT_PATH / f"USGS_{identifier}_{self.name}.geojson")
+            df.to_file(path, driver="GeoJSON")
+            return path
+        else:
+            return(list(self.data.values())[0])
 
-        return path
 
 

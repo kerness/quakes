@@ -2,6 +2,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { CircleMarker } from 'react-leaflet/CircleMarker'
 
 const QuakesMap = ({ center, zoom, quakesData }) => {
+    console.log("Ilość obserwacji: " + quakesData.length)
     const markers = quakesData.map(quake => {
         const lat = quake.geometry.coordinates[1]
         const lng = quake.geometry.coordinates[0]
