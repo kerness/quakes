@@ -7,7 +7,7 @@ import SubHeader from "./SubHeader";
 const Menu = ({ onVendorChange, vendor, getQuery, getCircleQuery }) => {
   return (
     <div className='menu'>
-      <Header title="Mapa trzęsień ziemi" />
+      <Header title="Trzęsienia Ziemi" />
       <Button color="#a1acbd" text={vendor} onClick={onVendorChange} />
       <Search getQuery={getQuery}/>
       {/* <SubHeader title="Wyszukaj trzęsienie w kole!"/> */}
