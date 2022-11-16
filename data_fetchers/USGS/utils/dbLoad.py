@@ -3,13 +3,16 @@ from quakes.models import Quake
 from django.contrib.gis.geos import Point
 from datetime import datetime
 from django.utils.timezone import make_aware
-
-
+from django.db import IntegrityError
 
 
 def load_to_django_db(file):
     geojs = json.loads(file.read_text())
     for feature in geojs["features"]:
+
+        # jeśli nie ma wartości magnitudy - pomiń
+        if feature["properties"]["mag"] is None:
+            continue
 
         q = Quake(
             mag=feature["properties"]["mag"],
@@ -22,4 +25,5 @@ def load_to_django_db(file):
             ),
             vendor='USGS',
         )
+
         q.save()
