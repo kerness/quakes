@@ -27,7 +27,7 @@ URL_FDSNWS = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&st
 URL_FEED = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/{}_{}.geojson"
 
 
-EXPORT_PATH = Path(DATA_DIR, "USGS")
+
 
 class USGSFetcher:
     """
@@ -51,11 +51,13 @@ class USGSFetcher:
         if mode == 'feed':
             self.request_url = URL_FEED.format(level, period)
             self.name = f"{level}{period}"
+            self.EXPORT_PATH = Path(DATA_DIR, "USGS")
         else:
             self.starttime = starttime
             self.endtime = endtime
             self.request_url = URL_FDSNWS.format(starttime, endtime)
             self.name = f"{mode.upper()}{starttime}{endtime}"
+            self.EXPORT_PATH = Path(DATA_DIR, "USGS", "export")
         
         try:
             r = requests.get(self.request_url)
@@ -96,7 +98,8 @@ class USGSFetcher:
         """       
         df = self.transformData()
         identifier = str(datetime.datetime.now()).replace(" ", "-")
-        path = Path(EXPORT_PATH / f"USGS_{identifier}_{self.name}.geojson")
+        path = Path(self.EXPORT_PATH / f"USGS_{identifier}_{self.name}.geojson")
+        print(path)
         df.to_file(path, driver="GeoJSON")
         return path
 
