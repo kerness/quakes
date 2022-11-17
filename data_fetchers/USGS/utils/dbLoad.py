@@ -15,6 +15,7 @@ def load_to_django_db(file):
             continue
 
         q = Quake(
+            source_system_id = feature['properties']['id'],
             mag=feature["properties"]["mag"],
             date=make_aware(datetime.fromtimestamp(feature["properties"]["time"]/1000)).date(), # EDITED: get only date!
             # może wcześniej zamienic na to takie datetime

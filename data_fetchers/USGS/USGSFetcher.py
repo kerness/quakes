@@ -81,13 +81,16 @@ class USGSFetcher:
         df = gpd.GeoDataFrame()
         
         for i, feature in enumerate(self.data['features']):
-            
+
+            # copy id from feature['id'] to feature['properties']
+            feature['properties']['id'] = feature['id']
+
             coordinates = feature["geometry"]["coordinates"]
 
             geometry = gpd.points_from_xy([coordinates[0]], [coordinates[1]])
 
             row = gpd.GeoDataFrame(feature["properties"], index=[i], geometry=geometry, crs='EPSG:4326')
-            row = row[['mag', 'place', 'time', 'type', 'title', 'geometry']]
+            row = row[['id','mag', 'place', 'time', 'type', 'title','code', 'geometry']]
             df = pd.concat([df, row])
     
         return df
