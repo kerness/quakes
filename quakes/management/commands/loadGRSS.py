@@ -6,36 +6,16 @@ A cutom managment script for loading data from GRSS.
 
 # TODO: zrobić tak by ładował tylko najnowsze - te, których nie ma
 
+from django.core.management.base import BaseCommand
+import data_fetchers.GRSS.utils.dbLoad as dl
 
-from django.core.management.base import BaseCommand, CommandError
 
-import json
-from quakes.models import Quake
-from django.contrib.gis.geos import Point
-from datetime import datetime
-from django.utils.timezone import make_aware
-
-# TODO: zrobic tak jak w usgs że to ładujące jest w utils
 def load_GRSS():
     from data_fetchers.GRSS.GRSSfetcher import GRSSFetcher
 
     f = GRSSFetcher()
     file = f.exportData()
-
-    geojs = json.loads(file.read_text())
-    for feature in geojs["features"]:
-
-        q = Quake(
-            source_system_id = feature['properties']['unique_id'],
-            mag=feature["properties"]["mag"],
-            date=feature["properties"]["date"],
-            geom=Point(
-                feature["geometry"]["coordinates"][0],
-                feature["geometry"]["coordinates"][1],
-            ),
-            vendor='GRSS',
-        )
-        q.save()
+    dl.load_to_django_db(file)
 
 
 class Command(BaseCommand):
