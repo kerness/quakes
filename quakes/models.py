@@ -2,18 +2,12 @@ from email.policy import default
 from random import choices
 from django.contrib.gis.db import models
 
-# class DataVendor(models.Model):
-#     name = models.TextField(("Data Vendor name"))
-
-#     def __str__(self) -> str:
-#         return self.name
-
 
 class Quake(models.Model):
     mag = models.FloatField(("Magnitude"))
     date = models.DateField(("Date"))
     geom = models.PointField(srid=4326)
-    source_system_id = models.CharField(("ID from source system"), max_length=64, default='unknown') # remove default !!!! just for testing!
+    source_system_id = models.CharField(("ID from source system"), max_length=64, unique=True) # remove default !!!! just for testing!
     # vendor = models.ForeignKey(DataVendor, on_delete=models.CASCADE, default=1)
     vendor = models.CharField(
         max_length=32,
@@ -23,4 +17,14 @@ class Quake(models.Model):
 
     def __str__(self) -> str:
         return str(self.mag) + str(self.date)
+
+    # a to nie wystarczy tylko żeby source_system_id było unique? xdd
+    def save(self, *args, **kwargs):
+        if self.vendor == "GRSS":
+
+            super().save(*args, **kwargs)
+        elif self.vendor == "USGS":
+            super().save(*args, **kwargs)
+        else:
+            super().save(*args, **kwargs)
         

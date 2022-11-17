@@ -26,5 +26,8 @@ def load_to_django_db(file):
             ),
             vendor='USGS',
         )
-
-        q.save()
+        try:
+            q.save()
+        except IntegrityError as e:
+            print(e)
+            continue

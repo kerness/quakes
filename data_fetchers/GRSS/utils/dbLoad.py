@@ -1,6 +1,11 @@
 import json
 from quakes.models import Quake
 from django.contrib.gis.geos import Point
+from django.db import IntegrityError
+
+
+# def get_list_of_ids():
+#     ids = Quake.objects.all()
 
 
 def load_to_django_db(file):
@@ -17,4 +22,8 @@ def load_to_django_db(file):
             ),
             vendor="GRSS",
         )
-        q.save()
+        try:
+            q.save()
+        except IntegrityError as e:
+            print(e)
+            continue
