@@ -15,7 +15,7 @@ from django.contrib.gis.geos import Point
 from datetime import datetime
 from django.utils.timezone import make_aware
 
-
+# TODO: zrobic tak jak w usgs że to ładujące jest w utils
 def load_GRSS():
     from data_fetchers.GRSS.GRSSfetcher import GRSSFetcher
 
