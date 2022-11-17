@@ -13,6 +13,7 @@ class Quake(models.Model):
     mag = models.FloatField(("Magnitude"))
     date = models.DateField(("Date"))
     geom = models.PointField(srid=4326)
+    source_system_id = models.CharField(("ID from source system"), max_length=64, default='unknown') # remove default !!!! just for testing!
     # vendor = models.ForeignKey(DataVendor, on_delete=models.CASCADE, default=1)
     vendor = models.CharField(
         max_length=32,
