@@ -26,6 +26,7 @@ def load_GRSS():
     for feature in geojs["features"]:
 
         q = Quake(
+            source_system_id = feature['properties']['unique_id'],
             mag=feature["properties"]["mag"],
             date=feature["properties"]["date"],
             geom=Point(
