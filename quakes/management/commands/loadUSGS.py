@@ -18,7 +18,7 @@ import data_fetchers.USGS.utils.dbLoad as dl
 def load_USGS():
     from data_fetchers.USGS.USGSFetcher import USGSFetcher
 
-    f = USGSFetcher(mode="feed", level="1.0", period="day")
+    f = USGSFetcher(mode="feed", level="all", period="month")
     file = f.exportData()
     dl.load_to_django_db(file)
 
