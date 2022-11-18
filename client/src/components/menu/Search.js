@@ -32,7 +32,7 @@ const Search = ( { getQuery }) => {
             { errors.enddate?.type === "required" && <p role="alert">Data końcowa jest wymagana.</p> }
 
             <label htmlFor="min-mag">minimalna magnituda:</label>
-            <input type="number" id="min-mag" name="min-mag"
+            <input type="number" step="0.01" id="min-mag" name="min-mag"
                 {...register('minmag', { required: false, min: 0.1, max: 10 })}
                 aria-invalid={errors.minmag ? "true" : "false"}
             />
@@ -40,18 +40,18 @@ const Search = ( { getQuery }) => {
 
 
             <label htmlFor="max-mag">maksymalna magnituda:</label>
-            <input type="number" id="max-mag" name="max-mag"
+            <input type="number" step="0.01" id="max-mag" name="max-mag"
                 {...register('maxmag', { required: false, min: 0.1, max: 10 })}
                 aria-invalid={errors.maxmag ? "true" : "false"}
             />
             { errors.maxmag?.type === "required" && <p role="alert">Podaj maksymalną wartość magnitudy.</p> }
 
             <label htmlFor="lng">szerokość geograficzna:</label>
-            <input type="number" id="lng" name="lng" { ...register('lng', { required: false }) }/>
+            <input type="number" step="0.01" id="lng" name="lng" { ...register('lng', { required: false }) }/>
 
 
             <label htmlFor="lat">długość geograficzna:</label>
-            <input type="number" id="lat" name="lat" {...register('lat', { required: false })} />
+            <input type="number" step="0.01" id="lat" name="lat" {...register('lat', { required: false })} />
 
 
             <label htmlFor="radius">promień:</label>
