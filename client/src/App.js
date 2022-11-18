@@ -16,8 +16,8 @@ function App() {
    const [query, setQuery] = useState({
       minmag: 0,
       maxmag: 10,
-      startdate: '',
-      enddate: '',
+      startdate: '2022-11-01',
+      enddate: '2022-12-01',
       lat: '',
       lng: '',
       radius: ''
