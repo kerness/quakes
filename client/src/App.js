@@ -6,7 +6,28 @@ import Spinner from "./components/Spinner"
 import TopBar from './components/TopBar';
 import Menu from './components/menu/Menu';
 
+function parseDate(date) {
+   let dd = String(date.getDate()).padStart(2, '0');
+   let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+   let yyyy = date.getFullYear();
+   return yyyy + '-' + mm + '-' + dd;
+}
+
+function date() {
+   // get startdate and enddate based on current date
+   let startdate = new Date()
+   startdate.setDate(startdate.getDate()-30);
+   let enddate = new Date();
+
+   // console.log(parseDate(startdate));
+   // console.log(parseDate(enddate));
+   return [parseDate(startdate), parseDate(enddate)];
+   
+}
+
+
 function App() {
+   const [dates, setDates] = useState(date())
    const [quakesData, setQuakesData] = useState([])
    const [loading, setLoading] = useState(false)
    const [activeQuake, setActiveQuake] = useState(null);
@@ -16,18 +37,12 @@ function App() {
    const [query, setQuery] = useState({
       minmag: 0,
       maxmag: 10,
-      startdate: '2022-11-01',
-      enddate: '2022-12-01',
+      startdate: dates[0],
+      enddate: dates[1],
       lat: '',
       lng: '',
       radius: ''
    })
-
-   // const [circleQuery, setCircleQuery] = useState({
-   //    lat: '',
-   //    lng: '',
-   //    radius: ''
-   // })
 
 
    useEffect(() => {
