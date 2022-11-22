@@ -1,5 +1,6 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import { CircleMarker } from 'react-leaflet/CircleMarker'
+import MapEvents from "./MapEvents";
 
 const QuakesMap = ({ center, zoom, quakesData }) => {
     console.log("Ilość obserwacji: " + quakesData.length)
@@ -41,7 +42,7 @@ const QuakesMap = ({ center, zoom, quakesData }) => {
             />
 
             {markers}
-
+            <MapEvents/>
         </MapContainer>
 
     )
