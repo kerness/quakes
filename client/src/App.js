@@ -84,13 +84,27 @@ function App() {
       console.log(activeVendor);
    }
 
-   // getQuer
+   // change to USGS
+   const toUSGS = () => {
+      setActiveVendor('USGS')
+      setZoom(3)
+      setCenter([19.00, 19.00])
+      console.log(activeVendor);
+   }
+
+   // change to USGS
+   const toGRSS = () => {
+      setActiveVendor('GRSS')
+      setZoom(8)
+      setCenter([50.505, 19.09])
+      console.log(activeVendor);
+   }
 
 
    return (
 
       <div className='app-container'>
-      <Menu onVendorChange={ changeVendor } vendor={ activeVendor } getQuery={ (q) => setQuery(q) }/>
+      <Menu activeVendor={activeVendor} toUSGS={toUSGS} toGRSS={toGRSS} onVendorChange={ changeVendor } vendor={ activeVendor } getQuery={ (q) => setQuery(q) }/>
       {/* <Menu onVendorChange={changeVendor} vendor={activeVendor} getQuery={(q) => setQuery(q)} getCircleQuery={(q) => setCircleQuery(q)}/> */}
 
       { !loading ? <QuakesMap center={center} zoom={zoom} quakesData={quakesData}/> : <Spinner />}

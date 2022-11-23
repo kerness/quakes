@@ -3,12 +3,13 @@ import Header from "./Header"
 import Search from "./Search"
 import CircleSearch from "./CircleSearch";
 import SubHeader from "./SubHeader";
-
-const Menu = ({ onVendorChange, vendor, getQuery, getCircleQuery }) => {
+import ModeSwitcher from "./ModeSwitcher";
+const Menu = ({ onVendorChange, vendor, getQuery, toUSGS, toGRSS, activeVendor }) => {
   return (
     <div className='menu'>
       <Header title="Trzęsienia Ziemi" />
-      <Button color="#a1acbd" text={vendor} onClick={onVendorChange} />
+      {/* <Button color="#a1acbd" text={vendor} onClick={onVendorChange} /> */}
+      <ModeSwitcher activeVendor={activeVendor} toUSGS={toUSGS} toGRSS={toGRSS}/>
       <Search getQuery={getQuery}/>
       {/* <SubHeader title="Wyszukaj trzęsienie w kole!"/> */}
       {/* <CircleSearch getCircleQuery={getCircleQuery}/> */}
