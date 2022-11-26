@@ -45,10 +45,10 @@ const QuakesMap = ({ center, zoom, radius, quakesData }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {markers}
             <MapEvents/>
             {/* if query radius jest jakiś */}
             {radius != '' && <CircleArea center={center} radius={radius*1000}/> }
+            {markers}
         </MapContainer>
 
     )
