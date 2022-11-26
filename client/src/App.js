@@ -66,8 +66,21 @@ function App() {
          setLoading(false)
       }
       fetchData()
+
+      changeCenter()
       console.log(query)
    }, [activeVendor, query])
+
+
+   // change center
+   // TODO: jakiś sensowny setZOOM
+   const changeCenter = () => {
+      if (query.lat != '' && query.lng != '') {
+         setCenter([query.lng, query.lat])
+         console.log(center);
+         setZoom(7)
+      }
+   }
 
    // change Vendor
    const changeVendor = () => {

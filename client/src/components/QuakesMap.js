@@ -4,6 +4,7 @@ import MapEvents from "./MapEvents";
 
 const QuakesMap = ({ center, zoom, quakesData }) => {
     console.log("Ilość obserwacji: " + quakesData.length)
+    console.log("Center mapy:" + center)
     const markers = quakesData.map(quake => {
         const lat = quake.geometry.coordinates[1]
         const lng = quake.geometry.coordinates[0]
@@ -28,8 +29,10 @@ const QuakesMap = ({ center, zoom, quakesData }) => {
         )
 
     })
+    
 
     return (
+
         // prefereCanvas miało być szybsze ale jakoś nie widzę
         <MapContainer className="map"
             center={center}
