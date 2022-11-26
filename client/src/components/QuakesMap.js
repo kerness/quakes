@@ -1,8 +1,9 @@
-import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
+import { MapContainer,Popup, TileLayer } from "react-leaflet";
 import { CircleMarker } from 'react-leaflet/CircleMarker'
 import MapEvents from "./MapEvents";
+import CircleArea from "./CircleArea";
 
-const QuakesMap = ({ center, zoom, quakesData }) => {
+const QuakesMap = ({ center, zoom, radius, quakesData }) => {
     console.log("Ilość obserwacji: " + quakesData.length)
     console.log("Center mapy:" + center)
     const markers = quakesData.map(quake => {
@@ -46,6 +47,8 @@ const QuakesMap = ({ center, zoom, quakesData }) => {
 
             {markers}
             <MapEvents/>
+            {/* if query radius jest jakiś */}
+            {radius != '' && <CircleArea center={center} radius={radius*1000}/> }
         </MapContainer>
 
     )

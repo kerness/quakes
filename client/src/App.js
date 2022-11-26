@@ -120,7 +120,7 @@ function App() {
       <Menu activeVendor={activeVendor} toUSGS={toUSGS} toGRSS={toGRSS} onVendorChange={ changeVendor } vendor={ activeVendor } getQuery={ (q) => setQuery(q) }/>
       {/* <Menu onVendorChange={changeVendor} vendor={activeVendor} getQuery={(q) => setQuery(q)} getCircleQuery={(q) => setCircleQuery(q)}/> */}
 
-      { !loading ? <QuakesMap center={center} zoom={zoom} quakesData={quakesData}/> : <Spinner />}
+      { !loading ? <QuakesMap center={center} zoom={zoom} radius={query.radius} quakesData={quakesData}/> : <Spinner />}
       
 
 
