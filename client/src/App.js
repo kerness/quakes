@@ -32,7 +32,7 @@ function App() {
    const [loading, setLoading] = useState(false)
    const [activeQuake, setActiveQuake] = useState(null);
    const [activeVendor, setActiveVendor] = useState('GRSS');
-   const [zoom, setZoom] = useState(8)
+   const [zoom, setZoom] = useState(9)
    const [center, setCenter] = useState([50.505, 19.09])
    const [query, setQuery] = useState({
       minmag: 0,
@@ -108,9 +108,9 @@ function App() {
    // change to USGS
    const toGRSS = () => {
       setActiveVendor('GRSS')
-      setZoom(8)
+      setZoom(9)
       setCenter([50.505, 19.09])
-      console.log(activeVendor);
+      console.log(query)
    }
 
 

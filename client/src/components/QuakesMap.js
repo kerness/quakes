@@ -10,7 +10,7 @@ const QuakesMap = ({ center, zoom, radius, quakesData }) => {
         const lat = quake.geometry.coordinates[1]
         const lng = quake.geometry.coordinates[0]
         return (
-            <CircleMarker center={[lat, lng]} key={quake.id} radius={8}>
+            <CircleMarker center={[lat, lng]} key={quake.id} radius={7}>
                 <Popup
                     position={[
                         quake.geometry.coordinates[1],
