@@ -1,3 +1,8 @@
+/* Color palette: https://colorhunt.co/palette/191a191e51284e9f3dd8e9a8 */
+/* html, body {margin: 0; height: 100%; overflow: hidden} */
+/* TODO: zrobić tak żeby dało się scrollować tylko menu a mapy nie */
+/* LOADER */
+
 .loader {
   display: flex;
   flex-direction: column;
@@ -15,17 +20,24 @@
 }
 
 
+/* APP */
+
 .app-container {
   display: flex;
 }
+
+
 
 .map {
   height: 100vh;
   width: 75%;
 }
 
+/* MENU */
+
+
 .menu {
-  background-color: #3d4756;
+  background-color: #191A19;
   width: 25%;
 }
 
@@ -34,8 +46,8 @@
   justify-content: space-between;
   align-items: center;
   margin: 5px;
-  margin-bottom: 80px;
-  background-color:#a1acbd;
+  margin-bottom: 50px;
+  background-color:#1E5128;
   text-align: center;
 }
 
@@ -52,6 +64,27 @@
   padding: 10px;
 }
 
+.search-form h4, h4 {
+  padding-left: 0px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  margin-top: 10px;
+  color: #a1acbd;
+  background-color: #3d3e3f;
+  text-align: center;
+  font-size: 1.5vh;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+
+h4 {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
 .search-form input {
   width: 100%;
   padding: 5px;
@@ -60,7 +93,7 @@
 
 
 .search-form label {
-  font-size: 2vh;
+  font-size: 1.5vh;
   color: whitesmoke;
   padding: 5px;
   font-variant-caps: small-caps;
@@ -71,20 +104,21 @@
   margin-top: 30px;
   width: 100%;
   text-align: center;
-  background-color: #a1acbd;
+  background-color: #1E5128;
   border: none;
   color: whitesmoke;
   font-variant-caps: all-small-caps;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
-  font-size: 3vh;
+  font-size: 2vh;
 }
 
 p[role=alert] {
-  color: red;
+  color: rgb(192, 56, 56);
+  font-size: 1.5vh;
 }
 
-.btn{
+/* .btn{
   width: 100%;
   background-color: #a1acbd;
   border-radius: 0;
@@ -94,8 +128,29 @@ p[role=alert] {
   font-family: 'Roboto', sans-serif;
   font-size: 3vh;
   
+} */
+
+.mode-switcher {
+  background-color: #1E5128;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.usgs {
-  background-color: aquamarine;
+
+.btn{
+  background-color: #1E5128;
+  border-radius: 0;
+  width: 50%;
+}
+
+.btn:focus{
+  background-color: #4E9F3D;
+}
+
+.btn:active{
+  background-color: #4E9F3D;
+}
+
+.popup {
+  border-radius: 0;
 }
