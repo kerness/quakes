@@ -9,6 +9,7 @@ const Menu = ({ onVendorChange, vendor, getQuery, toUSGS, toGRSS, activeVendor }
     <div className='menu'>
       <Header title="Trzęsienia Ziemi" />
       {/* <Button color="#a1acbd" text={vendor} onClick={onVendorChange} /> */}
+      <h4>Wybierz dostawcę danych</h4>
       <ModeSwitcher activeVendor={activeVendor} toUSGS={toUSGS} toGRSS={toGRSS}/>
       <Search getQuery={getQuery}/>
       {/* <SubHeader title="Wyszukaj trzęsienie w kole!"/> */}

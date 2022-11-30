@@ -34,6 +34,7 @@ function App() {
    const [activeVendor, setActiveVendor] = useState('GRSS');
    const [zoom, setZoom] = useState(9)
    const [center, setCenter] = useState([50.505, 19.09])
+   const [numOfQuakes, setNumOfQuakes] = useState(0)
    const [query, setQuery] = useState({
       minmag: 0,
       maxmag: 10,
@@ -69,7 +70,7 @@ function App() {
 
       changeCenter()
       console.log(query)
-   }, [activeVendor, query])
+   }, [query]) //[activeVendor, query]) jeśli chce się żeby zmiana vendora wykonywała zapytanie
 
 
    // change center

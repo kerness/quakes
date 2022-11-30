@@ -12,8 +12,8 @@ const ModeSwitcher = ( {onClick, toUSGS, toGRSS, activeVendor} ) => {
   console.log("aktywny vendor", activeVendor);
   return (
     <div className='mode-switcher'>
-      <Button text={"GRSS"}  onClick={toGRSS} className="grss"></Button>
-      <Button text={"USGS"} onClick={toUSGS} className="usgs"></Button>
+      <Button text={"GRSS"}  onClick={toGRSS} className="btn-grss"></Button>
+      <Button text={"USGS"} onClick={toUSGS} className="btn-usgs"></Button>
     </div>
   )
 }

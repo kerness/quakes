@@ -33,7 +33,8 @@ const Search = ( { getQuery }) => {
     return (
         // TODO: zrobić tak żeby data druga nie mogła być wcześniejsza od pierwszej
         <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="start-date">data początkowa:</label>
+            <h4>Wyszukaj trzęsienia o zadanych parametrach</h4>
+            <label htmlFor="start-date">data początkowa</label>
             <input type="date" id="start-date" name="start-date"
                 { ...register('startdate', { 
                     required: true 
@@ -42,7 +43,7 @@ const Search = ( { getQuery }) => {
             />
             { errors.startdate?.type === "required" && <p role="alert">Data początkowa jest wymagana.</p> }
 
-            <label htmlFor="end-date">data końcowa:</label>
+            <label htmlFor="end-date">data końcowa</label>
             <input type="date" id="end-date" name="end-date"
                 { ...register('enddate', {
                     required: true,
@@ -54,12 +55,12 @@ const Search = ( { getQuery }) => {
             { errors.enddate?.type === "required" && <p role="alert">Data końcowa jest wymagana.</p> }
             { errors.enddate?.type === "validate" && <p role="alert">{errors.enddate?.message}</p> }
 
-            <label htmlFor="min-mag">minimalna magnituda:</label>
+            <label htmlFor="min-mag">minimalna magnituda</label>
             <input type="number" step="0.01" id="min-mag" name="min-mag"
                 {...register('minmag', { required: false, min: 0.1, max: 10 })}
             />
 
-            <label htmlFor="max-mag">maksymalna magnituda:</label>
+            <label htmlFor="max-mag">maksymalna magnituda</label>
             <input type="number" step="0.01" id="max-mag" name="max-mag"
                 {...register('maxmag', { required: false, min: 0.1, max: 10 })}
             />
@@ -70,8 +71,8 @@ const Search = ( { getQuery }) => {
 
 
             {/* TODO: jakoś to wyróżnić */}
-            <h4>Wyszukaj trzęsienia z zadanym okręgu</h4>
-            <label htmlFor="lng">szerokość geograficzna:</label>
+            <h4>Wyszukaj trzęsienia w zadanym okręgu</h4>
+            <label htmlFor="lng">szerokość geograficzna</label>
             <input type="number" step="0.01" id="lng" name="lng" 
                 { ...register('lng', { required: false,
                     min: {value: -90, message: "Szerokość geograficzna nie może być mniejsza niż -90." },
@@ -86,7 +87,7 @@ const Search = ( { getQuery }) => {
             { errors.lng?.type === "min" && <p role="alert">{errors.lng?.message}</p> }
 
 
-            <label htmlFor="lat">długość geograficzna:</label>
+            <label htmlFor="lat">długość geograficzna</label>
             <input type="number" step="0.01" id="lat" name="lat" 
                 {...register('lat', { required: false ,
                     min: {value: -180, message: "Długość geograficzna nie może być mniejsza niż -180." },
@@ -96,11 +97,11 @@ const Search = ( { getQuery }) => {
                 } 
             />
 
-            <label htmlFor="radius">promień:</label>
+            <label htmlFor="radius">promień</label>
             <input type="number" id="radius" name="radius"
                 { ...register('radius', { required: false,
                     min: {value: 1, message: "Promień nie może być mniejszy od 1." },
-                    max: {value: 180, message: "Promień nie może być większy od 3000" },
+                    max: {value: 3000, message: "Promień nie może być większy od 3000" },
                     })
                 }
             />

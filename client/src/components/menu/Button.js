@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 
 
-const Button = ({color, text, onClick}) => { // destructure props object
+const Button = ({ text, onClick}) => { // destructure props object
     
     return (
         <button 
             onClick={onClick}
-            style={{ backgroundColor: color}}
+            // style={{ backgroundColor: color}}
             className='btn'>
                 {text}
         </button>

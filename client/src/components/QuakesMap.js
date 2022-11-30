@@ -9,9 +9,12 @@ const QuakesMap = ({ center, zoom, radius, quakesData }) => {
     const markers = quakesData.map(quake => {
         const lat = quake.geometry.coordinates[1]
         const lng = quake.geometry.coordinates[0]
+        const sizeFactor = quake.properties.mag/2//quake.properties.mag * (quake.properties.mag/2)
+
+        // style https://leafletjs.com/reference.html#circlemarker
         return (
-            <CircleMarker center={[lat, lng]} key={quake.id} radius={7}>
-                <Popup
+            <CircleMarker center={[lat, lng]} key={quake.id} radius={7*sizeFactor} color={"#1E5128"}>
+                <Popup className="popup"
                     position={[
                         quake.geometry.coordinates[1],
                         quake.geometry.coordinates[0],
