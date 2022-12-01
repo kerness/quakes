@@ -42,6 +42,7 @@ const QuakesMap = ({ center, zoom, radius, quakesData }) => {
             center={center}
             zoom={zoom}
             preferCanvas={true}
+            minZoom={3}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
