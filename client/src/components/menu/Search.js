@@ -96,6 +96,8 @@ const Search = ( { getQuery }) => {
                     }) 
                 } 
             />
+            { errors.lat?.type === "max" && <p role="alert">{errors.lat?.message}</p> }
+            { errors.lat?.type === "min" && <p role="alert">{errors.lat?.message}</p> }
 
             <label htmlFor="radius">promień</label>
             <input type="number" id="radius" name="radius"
@@ -105,7 +107,7 @@ const Search = ( { getQuery }) => {
                     })
                 }
             />
-
+            { errors.radius?.type === "min" && <p role="alert">{errors.radius?.message}</p> }
             { errors.lng?.type === "circleSearchData" && <p role="alert">Upewnij się, że podałeś długość, szerokość i promień </p> }           
 
             <input type="submit" id="submit" value="Szukaj" />
