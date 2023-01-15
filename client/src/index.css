@@ -9,10 +9,19 @@
   align-items: right;
   justify-content: right;
   min-height: 100vh;
+  margin: auto;
+  /* height: 100vh;
+  width: 75%;
+  margin: 0;
+  background-color: red; */
 }
 
 .loader img {
   width: 400px;
+  /* margin-left: auto;
+  margin-right: auto;
+  display: block; */
+
 }
 
 .loader h1 {

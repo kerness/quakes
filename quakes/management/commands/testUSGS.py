@@ -5,7 +5,7 @@ A cutom managment script for TESTING loading data from USGS.
 """
 
 from django.core.management.base import BaseCommand, CommandError
-import data_fetchers.USGS.USGSQuakesCounter as uqc
+import data_fetchers.USGS.utils.USGSQuakesCounter as uqc
 import data_fetchers.USGS.USGSFetcher as uf
 import data_fetchers.USGS.USGSQuakesExporter as uqe
 

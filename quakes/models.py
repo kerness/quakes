@@ -7,11 +7,18 @@ class Quake(models.Model):
     mag = models.FloatField(("Magnitude"))
     date = models.DateField(("Date"))
     geom = models.PointField(srid=4326)
-    source_system_id = models.CharField(("ID from source system"), max_length=64, unique=True) # remove default !!!! just for testing!
-    # vendor = models.ForeignKey(DataVendor, on_delete=models.CASCADE, default=1)
+    source_system_id = models.CharField(
+        ("ID from source system"), 
+        max_length=64, 
+        unique=True
+        )
     vendor = models.CharField(
         max_length=32,
-        choices=[("USGS", "USGS"), ("GRSS", "GRSS"), ("Unknown", "Unknown")],
+        choices=[
+            ("USGS", "USGS"), 
+            ("GRSS", "GRSS"), 
+            ("Unknown", "Unknown")
+            ],
         default="Unknown",
     )
 

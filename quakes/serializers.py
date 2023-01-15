@@ -8,3 +8,6 @@ class QuakeSerializer(GeoFeatureModelSerializer):
         model = Quake
         geo_field = 'geom'
         fields = '__all__'
+
+
+

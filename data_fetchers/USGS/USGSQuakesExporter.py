@@ -1,5 +1,5 @@
 import data_fetchers.USGS.USGSFetcher as uf
-import data_fetchers.USGS.USGSQuakesCounter as uqc
+import data_fetchers.USGS.utils.USGSQuakesCounter as uqc
 import data_fetchers.USGS.utils.dateRangeOperations as dro
 from datetime import datetime
 from datetime import timedelta
