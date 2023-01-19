@@ -7,6 +7,9 @@ Backend was created using Django with DjangoRestFramework for the REST API. Pyth
 Frontend was implemented using React. 
 
 
+![name](https://github.com/kerness/quakes/blob/master/examples/usgs-all.png)
+![name](https://github.com/kerness/quakes/blob/master/examples/usgs-circle.png)
+
 # How to run this project
 
 Clone this repo
