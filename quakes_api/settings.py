@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'quakes',
     'django_filters',
     'data_fetchers',
+    'corsheaders',
     
 ]
 
@@ -46,6 +47,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'quakes_api.urls'
@@ -165,3 +168,4 @@ LOGGING = {
     },
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
