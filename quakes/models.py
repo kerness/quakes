@@ -1,5 +1,3 @@
-from email.policy import default
-from random import choices
 from django.contrib.gis.db import models
 
 
@@ -8,17 +6,11 @@ class Quake(models.Model):
     date = models.DateField(("Date"))
     geom = models.PointField(srid=4326)
     source_system_id = models.CharField(
-        ("ID from source system"), 
-        max_length=64, 
-        unique=True
-        )
+        ("ID from source system"), max_length=64, unique=True
+    )
     vendor = models.CharField(
         max_length=32,
-        choices=[
-            ("USGS", "USGS"), 
-            ("GRSS", "GRSS"), 
-            ("Unknown", "Unknown")
-            ],
+        choices=[("USGS", "USGS"), ("GRSS", "GRSS"), ("Unknown", "Unknown")],
         default="Unknown",
     )
 
@@ -34,4 +26,3 @@ class Quake(models.Model):
             super().save(*args, **kwargs)
         else:
             super().save(*args, **kwargs)
-        

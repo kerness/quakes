@@ -3,12 +3,12 @@ import data_fetchers.USGS.utils.USGSQuakesCounter as uqc
 import data_fetchers.USGS.utils.dateRangeOperations as dro
 from datetime import datetime
 from datetime import timedelta
-from pathlib import Path
-import requests
+
 
 def handle_over_limit_ranges(over_limit_ranges):
     """Funkcja do obsługi miesięcy w którch liczba obserwacji przekracza 20000"""
-    # over_limit_ranges = [('2010-04-01', '2010-04-30'), ('2018-06-01', '2018-06-30'), ('2018-07-01', '2018-07-31'), ('2019-07-01', '2019-07-31'), ('2020-06-01', '2020-06-30')]
+    # over_limit_ranges = [('2010-04-01', '2010-04-30'), ('2018-06-01', '2018-06-30'),
+    # ('2018-07-01', '2018-07-31'), ('2019-07-01', '2019-07-31'), ('2020-06-01', '2020-06-30')]
     # dzieli podane miesiące na trzy okresy i zamienia je na obiekty datetime
     month_4 = [
         list(
@@ -20,7 +20,8 @@ def handle_over_limit_ranges(over_limit_ranges):
         for r in over_limit_ranges
     ]
     month_4_add1 = []
-    # dodaje dwie daty do każdego miesiąca tak aby możliwe było wykonanie zapytania bez nachodzących na siebie dat
+    # dodaje dwie daty do każdego miesiąca tak
+    # aby możliwe było wykonanie zapytania bez nachodzących na siebie dat
     for date_range in month_4:
         date_range.insert(2, (date_range[1] + timedelta(days=1)))
         date_range.insert(4, (date_range[3] + timedelta(days=1)))
@@ -29,7 +30,7 @@ def handle_over_limit_ranges(over_limit_ranges):
     exported_files = []
     # pętla do wykonania zapytań w trzech okresach któ©e na siebie nie nachodzą
     for mdr in month_4_add1:
-        #print(mdr)
+        # print(mdr)
         f = uf.USGSFetcher(mode="fdsnws", starttime=mdr[0], endtime=mdr[1])
         res = f.exportData()
         exported_files.append(res)
@@ -39,7 +40,7 @@ def handle_over_limit_ranges(over_limit_ranges):
         f = uf.USGSFetcher(mode="fdsnws", starttime=mdr[4], endtime=mdr[5])
         res = f.exportData()
         exported_files.append(res)
-    
+
     return exported_files
 
 
@@ -60,7 +61,3 @@ def export_quakes(start, end):
             res = handle_over_limit_ranges([range])
             exported_files = exported_files + res
     return exported_files
-
-
-    
-

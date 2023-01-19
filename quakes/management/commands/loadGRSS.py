@@ -4,7 +4,6 @@ https://docs.djangoproject.com/en/4.1/howto/custom-management-commands/
 A cutom managment script for loading data from GRSS.
 """
 
-# TODO: zrobić tak by ładował tylko najnowsze - te, których nie ma
 
 from django.core.management.base import BaseCommand
 import data_fetchers.GRSS.utils.dbLoad as dl

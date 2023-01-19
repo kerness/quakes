@@ -16,7 +16,8 @@ def downloadData(start, end):
 
 def over_limit_ranges_count(over_limit_ranges):
     """Funkcja do obsługi miesięcy w którch liczba obserwacji przekracza 20000"""
-    # over_limit_ranges = [('2010-04-01', '2010-04-30'), ('2018-06-01', '2018-06-30'), ('2018-07-01', '2018-07-31'), ('2019-07-01', '2019-07-31'), ('2020-06-01', '2020-06-30')]
+    # over_limit_ranges = [('2010-04-01', '2010-04-30'), ('2018-06-01', '2018-06-30'),
+    #  ('2018-07-01', '2018-07-31'), ('2019-07-01', '2019-07-31'), ('2020-06-01', '2020-06-30')]
     # dzieli podane miesiące na trzy okresy i zamienia je na obiekty datetime
     month_4 = [
         list(
@@ -28,7 +29,8 @@ def over_limit_ranges_count(over_limit_ranges):
         for r in over_limit_ranges
     ]
     month_4_add1 = []
-    # dodaje dwie daty do każdego miesiąca tak aby możliwe było wykonanie zapytania bez nachodzących na siebie dat
+    # dodaje dwie daty do każdego miesiąca tak
+    # aby możliwe było wykonanie zapytania bez nachodzących na siebie dat
     for date_range in month_4:
         date_range.insert(2, (date_range[1] + timedelta(days=1)))
         date_range.insert(4, (date_range[3] + timedelta(days=1)))
@@ -37,7 +39,7 @@ def over_limit_ranges_count(over_limit_ranges):
 
     # pętla do wykonania zapytań w trzech okresach któ©e na siebie nie nachodzą
     for mdr in month_4_add1:
-        #print(mdr)
+        # print(mdr)
         res = downloadData(mdr[0], mdr[1])
         print("Zakres dat: ", mdr[0], mdr[1], "Count:", res)
         res = downloadData(mdr[2], mdr[3])
@@ -56,6 +58,3 @@ def count_quakes(start, end):
             over_limit_ranges.append(range)
             print("\tOver 20000. Spliting into smaller intervals.")
             over_limit_ranges_count([range])
-
-    
-

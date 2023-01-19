@@ -13,7 +13,7 @@ except ModuleNotFoundError:
     DATA_DIR = "../../data"
 
 
-def create_timestamp(date, time=''):
+def create_timestamp(date, time=""):
     """
     Converts date and time string to UNIX timestamp
     The date is like: "2010/01/07"
@@ -29,7 +29,7 @@ def create_timestamp(date, time=''):
 
     date = str(date).replace("/", "-")
     # EDITED: remove time from date!
-    #time = str(time).split(".")[0]
+    # time = str(time).split(".")[0]
 
     # return date + " " + time
     return date
@@ -94,7 +94,7 @@ class GRSSFetcher:
             elif place["categories"][0]["name"] == "Stanowiska przyspieszeniowe":
                 s_przyspieszeniowe = s_przyspieszeniowe + 1
 
-        ## teraz już są tam tylko wstrząsy. teraz zrobić tak, żeby było tylko potrzebne info
+        # teraz już są tam tylko wstrząsy. teraz zrobić tak, żeby było tylko potrzebne info
         # więc pozostawiam TYLKO title i location
 
         quakes = [
@@ -125,11 +125,11 @@ class GRSSFetcher:
                     "properties": {
                         # "date": q["date"],
                         # "time": q["time"],
-                        #"precise_time": q["date"] + q["time"],
-                        "unique_id": hashlib.md5(bytes(q["date"] + q["time"], encoding='utf-8')).hexdigest(),
-                        "date": create_timestamp(
-                            q["date"], q["time"]
-                        ),  # TODO: przy ładowaniu: RuntimeWarning: DateTimeField Quake.date received a naive datetime (2022-09-21 17:57:31) while time zone support is active.
+                        # "precise_time": q["date"] + q["time"],
+                        "unique_id": hashlib.md5(
+                            bytes(q["date"] + q["time"], encoding="utf-8")
+                        ).hexdigest(),
+                        "date": create_timestamp(q["date"], q["time"]),
                         "mag": q["mag"],
                     },
                     "geometry": {
@@ -140,7 +140,7 @@ class GRSSFetcher:
                 for q in self.quakes
             ],
         }
-        df = self.fetchData()
+        # df = self.fetchData()
         identifier = str(datetime.datetime.now()).replace(" ", "-")
         name = ""
         path = Path(EXPORT_PATH / f"GRSS_{identifier}_{name}.geojson")

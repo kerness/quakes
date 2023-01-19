@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import QuakesMap from "./components/QuakesMap";
 import axios from 'axios'
 import Spinner from "./components/Spinner"
-import TopBar from './components/TopBar';
 import Menu from './components/menu/Menu';
 
 function parseDate(date) {

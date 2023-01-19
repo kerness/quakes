@@ -1,6 +1,7 @@
 import numpy as np
 import datetime as dt
 
+
 def dateRange(start="2000-01-01", end="2000-12-31"):
     # https://stackoverflow.com/questions/63637444/python-month-start-and-end-dates-between-two-dates
     start_date = np.datetime64(start[:-3])
@@ -41,6 +42,7 @@ def prepare_month_ranges(start, end):
     for s, e in zip(start, end):
         month_ranges.append((s, e))
     return month_ranges
+
 
 def split_date_range(start, end, intv):
     """Divide a date range into intervals"""

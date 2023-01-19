@@ -15,16 +15,18 @@ def load_to_django_db(file):
             continue
 
         q = Quake(
-            source_system_id = feature['properties']['id'],
+            source_system_id=feature["properties"]["id"],
             mag=feature["properties"]["mag"],
-            date=make_aware(datetime.fromtimestamp(feature["properties"]["time"]/1000)).date(), # EDITED: get only date!
+            date=make_aware(
+                datetime.fromtimestamp(feature["properties"]["time"] / 1000)
+            ).date(),  # EDITED: get only date!
             # może wcześniej zamienic na to takie datetime
-            #date="2022-01-17 18:50:52",
+            # date="2022-01-17 18:50:52",
             geom=Point(
                 feature["geometry"]["coordinates"][0],
                 feature["geometry"]["coordinates"][1],
             ),
-            vendor='USGS',
+            vendor="USGS",
         )
         try:
             q.save()
