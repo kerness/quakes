@@ -58,7 +58,9 @@ class USGSFetcher:
             self.request_url = URL_FDSNWS.format(starttime, endtime)
             self.name = f"{mode.upper()}{starttime}{endtime}"
             self.EXPORT_PATH = Path(DATA_DIR, "USGS", "export")
-        
+
+	    # create dir
+        self.EXPORT_PATH.mkdir(parents=True, exist_ok=True)
         try:
             r = requests.get(self.request_url)
         except requests.exceptions.RequestException as e:

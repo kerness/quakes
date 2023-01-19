@@ -36,6 +36,8 @@ def create_timestamp(date, time=''):
 
 
 EXPORT_PATH = Path(DATA_DIR, "GRSS")
+# create dir
+EXPORT_PATH.mkdir(parents=True, exist_ok=True)
 
 
 class GRSSFetcher:
