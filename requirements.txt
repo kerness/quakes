@@ -16,9 +16,11 @@ django-leaflet==0.28.2
 djangorestframework==3.13.1
 djangorestframework-gis==1.0
 Fiona==1.8.22
+flake8==6.0.0
 geopandas==0.11.1
 h11==0.13.0
 idna==3.4
+mccabe==0.7.0
 munch==2.5.0
 mypy-extensions==0.4.3
 numpy==1.23.3
@@ -28,6 +30,8 @@ pandas==1.5.0
 pathspec==0.10.1
 platformdirs==2.5.2
 psycopg2-binary==2.9.3
+pycodestyle==2.10.0
+pyflakes==3.0.1
 pyparsing==3.0.9
 pyproj==3.4.0
 PySocks==1.7.1
