@@ -10,6 +10,15 @@ Frontend was implemented using React.
 ![name](https://github.com/kerness/quakes/blob/master/examples/usgs-all.png)
 ![name](https://github.com/kerness/quakes/blob/master/examples/usgs-circle.png)
 
+# Data sources
+
+Data comes drom two sources:
+- United States Geological Survey (USGS) Earthquake Catalog API (https://earthquake.usgs.gov/fdsnws/event/1/)
+- Górnośląska Regionalna Sieć Sejsmologiczna (GRSS) (https://grss.gig.eu/)
+
+
+
+
 # How to run this project
 
 Clone this repo
