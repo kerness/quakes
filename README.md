@@ -1,10 +1,14 @@
+# About
+
+This repo contains my engineering thesis. Graduated in January 2023 with engineer's (bachelor's) degree. AGH UST. 
+
 # Project overview
 
 Quakes is a web-based system for the acquisition, processing, and visualisation of geodata containing location and earthquake parameter information. System is based on a microservices architecture and the system's components are containerized using Docker software. 
 
 Backend was created using Django with DjangoRestFramework for the REST API. Python was used to develop a module for exporting and processing data taken from USGS and GRSS.
 
-Frontend was implemented using React. 
+Frontend is a WebGIS application implemented using React and Leaflet for mapping.
 
 
 ![name](https://github.com/kerness/quakes/blob/master/examples/usgs-all.png)
@@ -16,7 +20,9 @@ Data comes drom two sources:
 - United States Geological Survey (USGS) Earthquake Catalog API (https://earthquake.usgs.gov/fdsnws/event/1/)
 - Górnośląska Regionalna Sieć Sejsmologiczna (GRSS) (https://grss.gig.eu/)
 
-
+*data_fetchers* python module was implemented to obtain data from sources.
+- *USGSQuakesExporter* and *USGSFetcher* - API wrappers to get historical data and data from last month (updating)
+- *GRSSFetcher* - web scrapper
 
 
 # How to run this project
