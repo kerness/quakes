@@ -16,7 +16,7 @@ Frontend is a WebGIS application implemented using React and Leaflet for mapping
 
 # Data sources
 
-Data comes drom two sources:
+Data comes from two sources:
 - United States Geological Survey (USGS) Earthquake Catalog API (https://earthquake.usgs.gov/fdsnws/event/1/)
 - Górnośląska Regionalna Sieć Sejsmologiczna (GRSS) (https://grss.gig.eu/)
 
